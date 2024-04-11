@@ -9,6 +9,7 @@ using VacationManager.Data.Models;
 
 namespace VacationManager.Controllers
 {
+    [Authorize]
     public class TeamController : Controller
     {
         private readonly VacationManagerDbContext _data;
@@ -71,6 +72,137 @@ namespace VacationManager.Controllers
         }
 
         private string GetUserId() => User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var team = await _data
+                .Teams
+                .Where(t => t.Id == id)
+                .Select(t => new TeamDetailsViewModel()
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    Project = t.Project.Name,
+                    Leader = t.Leader.UserName
+                })
+                .FirstOrDefaultAsync();
+
+            if (team == null)
+            {
+                return BadRequest();
+            }
+
+            return View(team);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var team = await _data.Teams.FindAsync(id);
+
+            if (team == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUserId = GetUserId();
+            if (currentUserId != team.LeaderID)
+            {
+                return Unauthorized();
+            }
+
+            TeamFormModel teamModel = new TeamFormModel()
+            {
+                Name = team.Name,                
+                ProjectId = team.ProjectId,
+                Projects = GetProjects()
+            };
+
+            return View(teamModel);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Edit(int id, TeamFormModel taskModel)
+        {
+            var team = await _data.Teams.FindAsync(id);
+
+            if (team == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUserId = GetUserId();
+            if (currentUserId != team.LeaderID)
+            {
+                return Unauthorized();
+            }
+
+            if (!GetProjects().Any(b => b.Id == taskModel.ProjectId))
+            {
+                ModelState.AddModelError(nameof(taskModel.ProjectId), "Board does not exist.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                taskModel.Projects = GetProjects();
+
+                return View(taskModel);
+            }
+
+            team.Name = taskModel.Name;            
+            team.ProjectId = taskModel.ProjectId;
+
+            await _data.SaveChangesAsync();
+            return RedirectToAction("All", "Project");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var team = await _data.Teams.FindAsync(id);
+
+            if (team == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUserId = GetUserId();
+
+            if (currentUserId != team.LeaderID)
+            {
+                return Unauthorized();
+            }
+
+            TeamViewModel teamModel = new TeamViewModel()
+            {
+                Id = team.Id,
+                Name = team.Name
+            };
+
+            return View(teamModel);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Delete(TeamViewModel teamModel)
+        {
+            var team = await _data.Teams.FindAsync(teamModel.Id);
+
+            if (team == null)
+            {
+                return BadRequest();
+            }
+
+            string currentUserId = GetUserId();
+
+            if (currentUserId != team.LeaderID)
+            {
+                return Unauthorized();
+            }
+
+            _data.Teams.Remove(team);
+            await _data.SaveChangesAsync();
+            return RedirectToAction("All", "Project");
+        }
     }
 }
 

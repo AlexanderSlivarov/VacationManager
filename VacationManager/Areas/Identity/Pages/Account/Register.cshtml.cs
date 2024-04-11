@@ -91,6 +91,10 @@ namespace VacationManager.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string TeamName { get; set; }
         }
 
 
@@ -106,6 +110,9 @@ namespace VacationManager.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.TeamName = Input.TeamName;
 
                 await _userStore.SetUserNameAsync((ApplicationUser)user, Input.Email, CancellationToken.None);
                 
@@ -126,7 +133,7 @@ namespace VacationManager.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
