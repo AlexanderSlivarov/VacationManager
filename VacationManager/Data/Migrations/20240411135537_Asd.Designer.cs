@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VacationManager.Data;
 
@@ -11,9 +12,10 @@ using VacationManager.Data;
 namespace VacationManager.Data.Migrations
 {
     [DbContext(typeof(VacationManagerDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240411135537_Asd")]
+    partial class Asd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,68 +240,65 @@ namespace VacationManager.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2cd61097-4e5b-421e-8ab5-7d2bf104b113",
+                            Id = "d930106b-3079-4290-940b-4c86cd80275d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5a0cac6f-cc73-4abf-9169-b4dbda404527",
+                            ConcurrencyStamp = "d763c120-0210-4b6e-8c0b-ad9b725c3fb1",
                             EmailConfirmed = false,
                             FirstName = "Sasho",
                             LastName = "Manekena",
                             LockoutEnabled = false,
                             NormalizedUserName = "CEO@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELw8IZ3tR/QM2K1XYH55CxbTBU3V9pBv3GceiWKXY6KulAX3jRzLyCYgP865XQRoqw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBpOfKCCB4/WBcByDKRgtbevYyWMfAvV9NYjnxkOuzLpKgjwYqN0kQuj5oAoPWqZSg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eeaf02eb-78bb-4012-85d3-9088c8ccfb34",
+                            SecurityStamp = "cde6e5dc-5190-4546-93f2-be693e497207",
                             TeamName = "ceotata",
                             TwoFactorEnabled = false,
                             UserName = "ceo@gmail.com"
                         },
                         new
                         {
-                            Id = "2aa3379f-f6e8-4846-8d3b-de6a3fd59a4c",
+                            Id = "b9845226-832e-4792-a735-a610a6358fcd",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec398dae-e42a-45a1-a822-9db0ee150fd4",
+                            ConcurrencyStamp = "4b66d22f-843c-452c-87db-913ba3256231",
                             EmailConfirmed = false,
                             FirstName = "Marin",
                             LastName = "Pingvin",
                             LockoutEnabled = false,
                             NormalizedUserName = "DEVELOPER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJqlKh4rr0ANbxvoBCC22IVrOVmqEuq5Wh0QaDvmM2tjTBwtAfXcVnHtKKJ2v9bE2A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1d361de0-1ab6-46fe-b25d-c77217b1b892",
+                            SecurityStamp = "1a95fb9d-982c-4e61-9521-786b8efb931a",
                             TeamName = "Developerite",
                             TwoFactorEnabled = false,
                             UserName = "developer@gmail.com"
                         },
                         new
                         {
-                            Id = "bfdc4eb9-0b0e-4149-abe1-a1522e009617",
+                            Id = "70b396c1-b56d-46fb-9f7a-bcd7e7a7ed35",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a97c85ce-fbcc-4a03-b36d-9c5f22427b10",
+                            ConcurrencyStamp = "adae9d03-e185-48ae-9a7f-192bed472d7f",
                             EmailConfirmed = false,
                             FirstName = "Steven",
                             LastName = "Rodgrigez",
                             LockoutEnabled = false,
                             NormalizedUserName = "TEAMLEAD@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFOngpJDXQPKy9T4S0yiymcO9JmLlA13+8EJ59znfLyqOh1G/RskwWgGEAtPlIYRTg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "331b76e0-2b1f-4b74-b1ee-4fdf8c031e8a",
+                            SecurityStamp = "4cc552b1-cb5e-4e5f-a8fa-fb774bf8dd20",
                             TeamName = "Leaderite",
                             TwoFactorEnabled = false,
                             UserName = "teamlead@gmail.com"
                         },
                         new
                         {
-                            Id = "d2ccce78-3fc4-466b-9abc-95f83c5a1725",
+                            Id = "f1c49bf5-70ea-4757-8217-ed085f104bc1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f3164e60-3b22-4c5b-8cbc-579584511911",
+                            ConcurrencyStamp = "e981ac8e-403c-4a83-9890-4dc6ce380ac9",
                             EmailConfirmed = false,
                             FirstName = "Jordan",
                             LastName = "Fugata",
                             LockoutEnabled = false,
                             NormalizedUserName = "UNASSIGNED@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJo07gSpyQ5EmQ6OWtut94QevD0CVCyCzDByD7GekI2MQTFQ5RO0N0iHNnw24Rh3oQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6289a614-1a9c-4aa5-934f-0dad53bdf467",
+                            SecurityStamp = "8e73c495-f137-4352-840e-a3371b67cac5",
                             TeamName = "Randomite",
                             TwoFactorEnabled = false,
                             UserName = "unassigned@gmail.com"
@@ -343,9 +342,9 @@ namespace VacationManager.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ApplicantId = "d2ccce78-3fc4-466b-9abc-95f83c5a1725",
+                            ApplicantId = "f1c49bf5-70ea-4757-8217-ed085f104bc1",
                             Approved = true,
-                            CreationDate = new DateTime(2024, 4, 11, 16, 59, 49, 59, DateTimeKind.Local).AddTicks(1179),
+                            CreationDate = new DateTime(2024, 4, 11, 16, 55, 36, 634, DateTimeKind.Local).AddTicks(4877),
                             DateFrom = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateTo = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
                             HalfDay = true
@@ -353,9 +352,9 @@ namespace VacationManager.Data.Migrations
                         new
                         {
                             Id = 2,
-                            ApplicantId = "d2ccce78-3fc4-466b-9abc-95f83c5a1725",
+                            ApplicantId = "f1c49bf5-70ea-4757-8217-ed085f104bc1",
                             Approved = true,
-                            CreationDate = new DateTime(2024, 4, 11, 16, 59, 49, 59, DateTimeKind.Local).AddTicks(1228),
+                            CreationDate = new DateTime(2024, 4, 11, 16, 55, 36, 634, DateTimeKind.Local).AddTicks(4957),
                             DateFrom = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateTo = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
                             HalfDay = true
@@ -363,9 +362,9 @@ namespace VacationManager.Data.Migrations
                         new
                         {
                             Id = 3,
-                            ApplicantId = "d2ccce78-3fc4-466b-9abc-95f83c5a1725",
+                            ApplicantId = "f1c49bf5-70ea-4757-8217-ed085f104bc1",
                             Approved = true,
-                            CreationDate = new DateTime(2024, 4, 11, 16, 59, 49, 59, DateTimeKind.Local).AddTicks(1230),
+                            CreationDate = new DateTime(2024, 4, 11, 16, 55, 36, 634, DateTimeKind.Local).AddTicks(4965),
                             DateFrom = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateTo = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
                             HalfDay = true
@@ -444,28 +443,28 @@ namespace VacationManager.Data.Migrations
                         new
                         {
                             Id = 1,
-                            LeaderID = "bfdc4eb9-0b0e-4149-abe1-a1522e009617",
+                            LeaderID = "70b396c1-b56d-46fb-9f7a-bcd7e7a7ed35",
                             Name = "OtborEdno",
                             ProjectId = 1
                         },
                         new
                         {
                             Id = 2,
-                            LeaderID = "bfdc4eb9-0b0e-4149-abe1-a1522e009617",
+                            LeaderID = "70b396c1-b56d-46fb-9f7a-bcd7e7a7ed35",
                             Name = "OtborDve",
                             ProjectId = 2
                         },
                         new
                         {
                             Id = 3,
-                            LeaderID = "bfdc4eb9-0b0e-4149-abe1-a1522e009617",
+                            LeaderID = "70b396c1-b56d-46fb-9f7a-bcd7e7a7ed35",
                             Name = "OtborTri",
                             ProjectId = 2
                         },
                         new
                         {
                             Id = 4,
-                            LeaderID = "bfdc4eb9-0b0e-4149-abe1-a1522e009617",
+                            LeaderID = "70b396c1-b56d-46fb-9f7a-bcd7e7a7ed35",
                             Name = "OtborChetiri",
                             ProjectId = 3
                         });

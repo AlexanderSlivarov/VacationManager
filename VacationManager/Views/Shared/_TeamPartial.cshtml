@@ -1,0 +1,24 @@
+﻿﻿@using VacationManager.Models.Team
+
+@model IEnumerable<TeamViewModel>
+
+@foreach (var team in Model)
+{
+	<div class="card" style="width: 20rem;">
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item"><span class="fw-bold">Name: </span>@team.Name</li>
+			<li class="list-group-item"><span class="fw-bold">Leader: </span> : @team.Leader</li>
+			<li class="list-group-item">
+				<span class="fw-bold">Actions: </span>
+				<a asp-controller="Team" asp-action="Details" asp-route-id="@team.Id" class="btn btn-success mb-2">View</a>
+				<span></span>
+				@if (User.Identity.Name == team.Leader)
+				{
+					<a asp-controller="Team" asp-action="Edit" asp-route-id="@team.Id" class="btn btn-primary mb-2">Edit</a>
+					<span></span>
+					<a asp-controller="Team" asp-action="Delete" asp-route-id="@team.Id" class="btn btn-danger mb-2">Delete</a>
+				}
+			</li>
+		</ul>
+	</div>
+}	

@@ -63,24 +63,28 @@ namespace VacationManager.Data
                 .HasData(new Team()
                 {
                     Id = 1,
+                    Name = "OtborEdno",
                     ProjectId = Project1.Id,                   
                     LeaderID = TeamLead.Id
                 },
                 new Team()
                 {
                     Id = 2,
+                    Name = "OtborDve",
                     ProjectId = Project2.Id,                   
                     LeaderID = TeamLead.Id
                 },
                 new Team()
                 {
                     Id = 3,
+                    Name = "OtborTri",
                     ProjectId = Project2.Id,                   
                     LeaderID = TeamLead.Id
                 },
                 new Team()
                 {
                     Id = 4,
+                    Name = "OtborChetiri",
                     ProjectId = Project3.Id,                  
                     LeaderID = TeamLead.Id
                 });
@@ -125,6 +129,11 @@ namespace VacationManager.Data
                 UserName = "unassigned@gmail.com",
                 NormalizedUserName = "UNASSIGNED@GMAIL.COM"
             };
+
+            CEO.PasswordHash = hasher.HashPassword(CEO, "10ggKK@@");
+            Developer.PasswordHash = hasher.HashPassword(Developer, "10ggKK@@");
+            TeamLead.PasswordHash = hasher.HashPassword(TeamLead, "10ggKK@@");
+            Unassigned.PasswordHash = hasher.HashPassword(Unassigned, "10ggKK@@");
         }
 
         private void SeedProjects()
