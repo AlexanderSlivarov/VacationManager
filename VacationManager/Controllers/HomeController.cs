@@ -31,21 +31,12 @@ namespace VacationManager.Controllers
                     ProjectName = projectName,
                     TeamsCount = teamsInProject
                 });
-            }
-
-            var userTeamsCount = -1;
-
-            if (!User.Identity.IsAuthenticated)
-            {
-                var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                userTeamsCount = _data.Teams.Where(t => t.LeaderID == currentUserId).Count();
-            }
+            }                   
 
             var homeModel = new HomeViewModel()
             {
                 AllTeamsCount = _data.Teams.Count(),
-                ProjectsWithTeamsCount = teamsCounts,
-                UserTeamsCount = userTeamsCount
+                ProjectsWithTeamsCount = teamsCounts,                
             };
 
             return View(homeModel);

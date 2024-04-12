@@ -1,0 +1,25 @@
+﻿﻿@using VacationManager.Models.Project
+
+@model ProjectViewModel
+@{
+    ViewBag.Title = "View Project Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="d-flex justify-content-center">
+    <div class="card " style="width: 50rem;">
+        <div class="card-body">
+            <h3 class="card-title text-center">@Model.Name</h3>
+            <p class="card-text"><span class="fw-bold">Description:</span>@Model.Description</p>
+            <tr class="actions">
+                <th><span class="fw-bold">Actions:</span></th>
+                <td>
+                    <a asp-controller="Team" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Team" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </div>
+    </div>
+</div>

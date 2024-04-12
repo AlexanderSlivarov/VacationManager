@@ -6,33 +6,51 @@
 
 @model IEnumerable<ProjectViewModel>
 @{
- ViewData["Title"] = "Projects";
+    ViewData["Title"] = "Projects";
 }
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 @if (!Model.Any())
 {
- <h3 class="text-center">No projects yet!</h3>
+    <h3 class="text-center">No projects yet!</h3>
 }
 else
 {
-	<div class="container text-center">
-		<div class="row">
-			@foreach (var project in Model)
-			{
-				<div class="col">
-					<p class="fs-1">
-						@project.Name: <br> @project.Description
-					</p>
+    <div class="container text-center">
+        <div class="row">
+            @foreach (var project in Model)
+            {
+                <div class="col">
+                    <p class="fs-1">
+                        @project.Name <br> @project.Description
+                    </p>
 
-					@if (project.Teams.Any())
-					{
-						<div class="row d-flex justify-content-center">
-							@await Html.PartialAsync("~/Views/Shared/_TeamPartial.cshtml", project.Teams)
-						</div>
-					}
-				</div>
-			}
-		</div>
-	</div>
+                    <div class="card d-flex justify-content-center" style="width: 20rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span class="fw-bold">Name: </span>@project.Name</li>                           
+                            <li class="list-group-item">
+                                <span class="fw-bold">Actions: </span>
+                                <a asp-controller="Project" asp-action="Details" asp-route-id="@project.Id" class="btn btn-success mb-2">View</a>
+                                <span></span>
+                                <a asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id" class="btn btn-primary mb-2">Edit</a>
+                                <span></span>
+                                <a asp-controller="Project" asp-action="Delete" asp-route-id="@project.Id" class="btn btn-danger mb-2">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                   
+                    <h2> Teams </h2>
+                    <hr />
+
+                    @if (project.Teams.Any())
+                    {
+                        <div class="row d-flex justify-content-center">
+                            @await Html.PartialAsync("~/Views/Shared/_TeamPartial.cshtml", project.Teams)
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
 }
+

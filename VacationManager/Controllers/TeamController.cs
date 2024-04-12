@@ -22,7 +22,7 @@ namespace VacationManager.Controllers
         public async Task<IActionResult> Create()
         {
             TeamFormModel teamModel = new TeamFormModel()
-            {
+            {                
                 Projects = GetProjects()
             };
 
@@ -122,7 +122,7 @@ namespace VacationManager.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Edit(int id, TeamFormModel taskModel)
+        public async Task<IActionResult> Edit(int id, TeamFormModel teamModel)
         {
             var team = await _data.Teams.FindAsync(id);
 
@@ -132,25 +132,26 @@ namespace VacationManager.Controllers
             }
 
             string currentUserId = GetUserId();
+           
             if (currentUserId != team.LeaderID)
             {
                 return Unauthorized();
             }
 
-            if (!GetProjects().Any(b => b.Id == taskModel.ProjectId))
+            if (!GetProjects().Any(b => b.Id == teamModel.ProjectId))
             {
-                ModelState.AddModelError(nameof(taskModel.ProjectId), "Board does not exist.");
+                ModelState.AddModelError(nameof(teamModel.ProjectId), "Board does not exist.");
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                taskModel.Projects = GetProjects();
+                teamModel.Projects = GetProjects();
 
-                return View(taskModel);
+                return View(teamModel);
             }
 
-            team.Name = taskModel.Name;            
-            team.ProjectId = taskModel.ProjectId;
+            team.Name = teamModel.Name;            
+            team.ProjectId = teamModel.ProjectId;
 
             await _data.SaveChangesAsync();
             return RedirectToAction("All", "Project");

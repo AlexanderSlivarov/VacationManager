@@ -1,0 +1,54 @@
+﻿﻿@using VacationManager.Models.Leave
+
+@model LeaveFormModel
+@{
+	ViewBag.Title = "Add Leave";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+	<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+		<form asp-action="Create" method="post">
+			<div class="mb-3">
+				<label asp-for="Type" class="form-label">Type</label>
+				<input asp-for="Type" class="form-control" aria-required="true" />
+				<span asp-validation-for="Type" class="text-danger"></span>
+			</div>	
+			<div class="mb-3">
+				<label asp-for="DateFrom" class="form-label">DateFrom</label>
+				<input asp-for="DateFrom" class="form-control" aria-required="true" />
+				<span asp-validation-for="DateFrom" class="text-danger"></span>
+			</div>		
+			<div class="mb-3">
+				<label asp-for="DateTo" class="form-label">DateTo</label>
+				<input asp-for="DateTo" class="form-control" aria-required="true" />
+				<span asp-validation-for="DateTo" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<label asp-for="HalfDay" class="form-label">HalfDay</label>
+				<select asp-for="HalfDay" class="form-control">					
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+				<span asp-validation-for="HalfDay" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<label asp-for="Approved" class="form-label">Approved</label>
+				<select asp-for="Approved" class="form-control">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+				<span asp-validation-for="Approved" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<input class="btn btn-primary" type="submit" value="Add" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

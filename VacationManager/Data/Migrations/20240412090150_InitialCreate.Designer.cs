@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VacationManager.Data;
 
@@ -11,9 +12,10 @@ using VacationManager.Data;
 namespace VacationManager.Data.Migrations
 {
     [DbContext(typeof(VacationManagerDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240412090150_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,6 +236,76 @@ namespace VacationManager.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "43edd877-19b0-474e-a1ea-4cd56dbdb0c3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0fc9ab8d-c8f9-4a9c-b1d9-b7ece76ff368",
+                            EmailConfirmed = false,
+                            FirstName = "Sasho",
+                            LastName = "Manekena",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "CEO@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDCwbpMZ3ORv3/1HoAPSm0cZR0l+LIqYVbYQf04B2oIQKeuq1z615O3xBfCJ55URDQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8c7dc5c5-7b6d-4f85-81e8-60f125721d9a",
+                            TeamName = "ceotata",
+                            TwoFactorEnabled = false,
+                            UserName = "ceo@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "8a49aeaa-f3c0-4d82-ab55-eb6c7c250d03",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8a69d549-91a7-45a9-babc-9b5512a58641",
+                            EmailConfirmed = false,
+                            FirstName = "Marin",
+                            LastName = "Pingvin",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "DEVELOPER@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAELI5ht2UAadzoK1DHlwiBEEl/Zdfl/rrLTStttOmessV4ieuoX8JZ7KeHvjA0A2KuQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e1c343a7-ff88-46d7-8e04-46d5d58f6c44",
+                            TeamName = "Developerite",
+                            TwoFactorEnabled = false,
+                            UserName = "developer@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "c7d4efd3-6dcc-4fde-a462-372e8cb03702",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4190a594-18d7-4e90-9c80-5a2c50ea3f1b",
+                            EmailConfirmed = false,
+                            FirstName = "Steven",
+                            LastName = "Rodgrigez",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "TEAMLEAD@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOydT2M1LkrpQk5qHhim6f+HvflcGzpfh1vRNiPL4HOh65lE3JmcslIpAC2iCpWd2w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a0561a61-4717-4567-a6fa-913012186f56",
+                            TeamName = "Leaderite",
+                            TwoFactorEnabled = false,
+                            UserName = "teamlead@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "bfc26b82-f9e6-4b3d-8648-afaaa9040289",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c7ebb24c-586f-482a-9db6-5ad0ed113891",
+                            EmailConfirmed = false,
+                            FirstName = "Jordan",
+                            LastName = "Fugata",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "UNASSIGNED@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBRxnp0uATqPgS2BoblM2ehrnHiijK1dtNza4egFt54Va4gk+0q+zdSreae0Vl39PA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "898d12b1-2bd2-4eb3-88df-d446c698278f",
+                            TeamName = "Randomite",
+                            TwoFactorEnabled = false,
+                            UserName = "unassigned@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("VacationManager.Data.Models.Leave", b =>
@@ -248,9 +320,8 @@ namespace VacationManager.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Approved")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Approved")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -261,19 +332,46 @@ namespace VacationManager.Data.Migrations
                     b.Property<DateTime>("DateTo")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("HalfDay")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("HalfDay")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantId");
 
                     b.ToTable("Leaves");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ApplicantId = "bfc26b82-f9e6-4b3d-8648-afaaa9040289",
+                            Approved = true,
+                            CreationDate = new DateTime(2024, 4, 12, 12, 1, 49, 913, DateTimeKind.Local).AddTicks(2236),
+                            DateFrom = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
+                            HalfDay = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ApplicantId = "bfc26b82-f9e6-4b3d-8648-afaaa9040289",
+                            Approved = true,
+                            CreationDate = new DateTime(2024, 4, 12, 12, 1, 49, 913, DateTimeKind.Local).AddTicks(2277),
+                            DateFrom = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
+                            HalfDay = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ApplicantId = "bfc26b82-f9e6-4b3d-8648-afaaa9040289",
+                            Approved = true,
+                            CreationDate = new DateTime(2024, 4, 12, 12, 1, 49, 913, DateTimeKind.Local).AddTicks(2280),
+                            DateFrom = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateTo = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
+                            HalfDay = true
+                        });
                 });
 
             modelBuilder.Entity("VacationManager.Data.Models.Project", b =>
@@ -295,6 +393,26 @@ namespace VacationManager.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "purviproekt",
+                            Name = "ProektEdno"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "vtoriproekt",
+                            Name = "ProektDve"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "tretiproekt",
+                            Name = "ProektTri"
+                        });
                 });
 
             modelBuilder.Entity("VacationManager.Data.Models.Team", b =>
@@ -323,6 +441,36 @@ namespace VacationManager.Data.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Teams");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            LeaderID = "c7d4efd3-6dcc-4fde-a462-372e8cb03702",
+                            Name = "OtborEdno",
+                            ProjectId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            LeaderID = "c7d4efd3-6dcc-4fde-a462-372e8cb03702",
+                            Name = "OtborDve",
+                            ProjectId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            LeaderID = "c7d4efd3-6dcc-4fde-a462-372e8cb03702",
+                            Name = "OtborTri",
+                            ProjectId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            LeaderID = "c7d4efd3-6dcc-4fde-a462-372e8cb03702",
+                            Name = "OtborChetiri",
+                            ProjectId = 3
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
