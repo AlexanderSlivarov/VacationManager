@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VacationManager.Data;
 
@@ -11,9 +12,10 @@ using VacationManager.Data;
 namespace VacationManager.Data.Migrations
 {
     [DbContext(typeof(VacationManagerDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240413202004_xd")]
+    partial class xd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,6 +218,10 @@ namespace VacationManager.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -238,20 +244,21 @@ namespace VacationManager.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "24249420-f868-4a52-81e0-e980f457edd9",
+                            Id = "fd46d6ab-0297-43b9-8a4f-04b9ab3bc264",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb71c83a-99c6-4d6d-b1a2-43c6d723a0c8",
+                            ConcurrencyStamp = "d2e000e6-5365-4492-af01-8f6084b02d70",
                             EmailConfirmed = false,
                             FirstName = "CEO",
                             LastName = "ceo",
                             LockoutEnabled = false,
-                            NormalizedUserName = "CEO@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAZvlogCcvPlWBUQKHoQEokQm8huLOVCTZrhER1oucn9Y+KxWnJLRVDaaoPTP80jig==",
+                            NormalizedUserName = "CEO@GMAIL>COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEISn3bRNRs4iXq1m5Im4GQe3JNX9jalj2JCMaYpYu6mhX5klJE/1/uzu8ByWrsGirQ==",
                             PhoneNumberConfirmed = false,
                             Role = "CEO",
-                            SecurityStamp = "a5bb497e-1ecc-4d2f-8ea5-c56279b81467",
+                            SecurityStamp = "dd12880e-2f6d-44fb-8081-b26b28fb9919",
+                            TeamName = "CEO's",
                             TwoFactorEnabled = false,
-                            UserName = "ceo@gmail.com"
+                            UserName = "ce@gmail.com"
                         });
                 });
 

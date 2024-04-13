@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using VacationManager.Data;
+using VacationManager.Models.User;
 
 namespace VacationManager.Areas.Identity.Pages.Account
 {
@@ -26,13 +27,11 @@ namespace VacationManager.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IUserStore<ApplicationUser> _userStore;      
-
+        private readonly IUserStore<ApplicationUser> _userStore;     
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
-            SignInManager<ApplicationUser> signInManager)
-           
+            SignInManager<ApplicationUser> signInManager)           
         {
             _userManager = userManager;
             _userStore = userStore;            
@@ -93,10 +92,8 @@ namespace VacationManager.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string TeamName { get; set; }
+            public string LastName { get; set; }            
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -111,8 +108,8 @@ namespace VacationManager.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
                 user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
-                user.TeamName = Input.TeamName;
+                user.LastName = Input.LastName;               
+                user.Role = "Unassigned";
 
                 await _userStore.SetUserNameAsync((ApplicationUser)user, Input.Email, CancellationToken.None);
                 

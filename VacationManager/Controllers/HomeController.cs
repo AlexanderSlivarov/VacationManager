@@ -1,45 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using VacationManager.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Security.Claims;
-using VacationManager.Data;
-using VacationManager.Models;
 
 namespace VacationManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly VacationManagerDbContext _data;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(VacationManagerDbContext context)
+        public HomeController(ILogger<HomeController> logger)
         {
-            _data = context;
+            _logger = logger;
         }
+
         public IActionResult Index()
         {
-            var teamProjects = _data
-                .Projects
-                .Select(p => p.Name)
-                .Distinct();
+            return View();
+        }
 
-            var teamsCounts = new List<HomeProjectModel>();
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
-            foreach (var projectName in teamProjects)
-            {
-                var teamsInProject = _data.Teams.Where(t => t.Project.Name == projectName).Count();
-                teamsCounts.Add(new HomeProjectModel()
-                {
-                    ProjectName = projectName,
-                    TeamsCount = teamsInProject
-                });
-            }                   
-
-            var homeModel = new HomeViewModel()
-            {
-                AllTeamsCount = _data.Teams.Count(),
-                ProjectsWithTeamsCount = teamsCounts,                
-            };
-
-            return View(homeModel);
-        }       
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

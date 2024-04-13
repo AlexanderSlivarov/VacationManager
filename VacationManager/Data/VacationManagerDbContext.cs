@@ -19,6 +19,8 @@ namespace VacationManager.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Leave> Leaves { get; set; }
 
+        private ApplicationUser CEO { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
@@ -28,7 +30,28 @@ namespace VacationManager.Data
                 .HasForeignKey(t => t.ProjectId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            SeedAdmin();
+            modelBuilder
+                .Entity<ApplicationUser>()
+                .HasData(CEO);
+
             base.OnModelCreating(modelBuilder);            
         }      
+
+        private void SeedAdmin()
+        {
+            var hasher = new PasswordHasher<ApplicationUser>();
+
+            CEO = new ApplicationUser()
+            {
+                FirstName = "CEO",
+                LastName = "ceo",              
+                UserName = "ceo@gmail.com",
+                NormalizedUserName = "CEO@GMAIL.COM",
+                Role = "CEO"
+            };
+
+            CEO.PasswordHash = hasher.HashPassword(CEO, "10ggKK@@");
+        }
     }
 }

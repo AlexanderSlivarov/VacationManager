@@ -1,0 +1,33 @@
+﻿﻿@using VacationManager.Models.User
+
+@model UserFormModel
+@{
+	ViewBag.Title = "Edit User";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+	<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+		<form asp-action="Edit">
+			<div class="mb-3">
+				<label asp-for="UserName" class="form-label">UserName</label>
+				<input asp-for="UserName" class="form-control" aria-required="true" />
+				<span asp-validation-for="UserName" class="text-danger"></span>
+			</div>		
+			<div class="mb-3">
+				<label asp-for="Role" class="form-label">Role</label>				
+				<select asp-for="Role" class="form-control">
+					<option value="Developer">Developer</option>
+					<option value="TeamLeader">TeamLeader</option>
+					<option value="Unassigned">Unassigned</option>
+				</select>
+				<span asp-validation-for="Role" class="text-danger"></span>
+			</div>			
+			<div class="mb-3">
+				<input class="btn btn-primary" type="submit" value="Edit" />
+			</div>
+		</form>
+	</div>
+</div>

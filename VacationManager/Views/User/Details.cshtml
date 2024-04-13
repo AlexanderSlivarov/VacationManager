@@ -1,0 +1,27 @@
+﻿﻿@using VacationManager.Models.User
+
+@model UserDetailsViewModel
+@{
+    ViewBag.Title = "View User Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="d-flex justify-content-center">
+    <div class="card " style="width: 50rem;">
+        <div class="card-body">
+            <h3 class="card-title text-center">@Model.UserName</h3>
+            <p class="card-text"><span class="fw-bold">Role:</span>@Model.Role</p>
+            <p class="card-text"><span class="fw-bold">FirstName:</span>@Model.FirstName</p>
+            <p class="card-text"><span class="fw-bold">LastName:</span>@Model.LastName</p>            
+            <tr class="actions">
+                <th><span class="fw-bold">Actions:</span></th>
+                <td>
+                    <a asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+                    <a asp-controller="User" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </div>
+    </div>
+</div>

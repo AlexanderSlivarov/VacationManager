@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VacationManager.Data;
 
@@ -11,9 +12,10 @@ using VacationManager.Data;
 namespace VacationManager.Data.Migrations
 {
     [DbContext(typeof(VacationManagerDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240413204926_blq")]
+    partial class blq
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,6 +218,10 @@ namespace VacationManager.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -238,18 +244,19 @@ namespace VacationManager.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "24249420-f868-4a52-81e0-e980f457edd9",
+                            Id = "974bb7c5-7e76-42f9-bef1-636c7900708e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cb71c83a-99c6-4d6d-b1a2-43c6d723a0c8",
+                            ConcurrencyStamp = "f56e92be-beae-4e8b-9c66-6a19ae75232d",
                             EmailConfirmed = false,
                             FirstName = "CEO",
                             LastName = "ceo",
                             LockoutEnabled = false,
                             NormalizedUserName = "CEO@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAZvlogCcvPlWBUQKHoQEokQm8huLOVCTZrhER1oucn9Y+KxWnJLRVDaaoPTP80jig==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG5FdRoLJEEuKcNG0PsAPciRLwHxkBhaVlM4uhwJLOfMq9tsB49UO+nrz+OEmujzfg==",
                             PhoneNumberConfirmed = false,
                             Role = "CEO",
-                            SecurityStamp = "a5bb497e-1ecc-4d2f-8ea5-c56279b81467",
+                            SecurityStamp = "d24a690c-c4c4-427e-b78a-806d256a4a0e",
+                            TeamName = "CEO's",
                             TwoFactorEnabled = false,
                             UserName = "ceo@gmail.com"
                         });
@@ -337,7 +344,8 @@ namespace VacationManager.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LeaderID");
+                    b.HasIndex("LeaderID")
+                        .IsUnique();
 
                     b.HasIndex("ProjectId");
 
@@ -409,8 +417,8 @@ namespace VacationManager.Data.Migrations
             modelBuilder.Entity("VacationManager.Data.Models.Team", b =>
                 {
                     b.HasOne("VacationManager.Data.ApplicationUser", "Leader")
-                        .WithMany()
-                        .HasForeignKey("LeaderID")
+                        .WithOne("Team")
+                        .HasForeignKey("VacationManager.Data.Models.Team", "LeaderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -423,6 +431,11 @@ namespace VacationManager.Data.Migrations
                     b.Navigation("Leader");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("VacationManager.Data.ApplicationUser", b =>
+                {
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("VacationManager.Data.Models.Project", b =>

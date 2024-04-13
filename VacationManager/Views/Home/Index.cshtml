@@ -17,15 +17,6 @@
 	{
 		   <h1 class="text-center">Welcome, @User.Identity.Name!</h1>
 	}
-	<hr class="hr-2 bg-secondary" />	
-	<br />
-	<span class="boardSpan">Projects: <b>@Model.AllTeamsCount</b></span>
-	<ul>
-		@foreach (var board in Model.ProjectsWithTeamsCount)
-		{
-				<li>
-					<span class="boardSpan">@board.ProjectName:<b>@board.TeamsCount</b></span>
-				</li>
-		}
-	</ul>	
+	
+	<br />	
 </section>
